@@ -63,18 +63,17 @@ router.post("/user/login",function(req,res){
 })
 
 //user update
-// router.post("/user/profile/update",auth.verifyUser,function(req,res){
-//     console.log(req.userInfo._id);
-//     const uid =req.userInfo._id;
-//     const phnno = req.body.phnno;
-//     user.updateOne({_id : uid},{phnno : phnno})
-//     .then(function()
-//     { res.json({msg : "Profile updated"})})
-//     .catch(function()
-//     { res.json({msg : "Someting went wron, Please try agian!!"})}
-//     );
-
-// })
+router.put("/user/profile/update",auth.verifyUser,function(req,res){
+    console.log(req.userInfo._id);
+    const uid =req.userInfo._id;
+    const phnno = req.body.phnno;
+    user.updateOne({_id : uid},{phnno : phnno})
+    .then(function()
+    { res.json({msg : "Profile updated"})})
+    .catch(function()
+    { res.json({msg : "Someting went wrong, Please try agian!!"})}
+    );
+})
 
 //delete user by self
 // router.delete("/user/profile/delete",auth.verifyUser,function(req,res){
