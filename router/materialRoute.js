@@ -8,7 +8,9 @@ const multer = require("multer");
 const upload = require("../uploads/file");
 
 
-
+router.put('/material/update', function(req,res){
+    
+})
 
 
 module.exports = router;
