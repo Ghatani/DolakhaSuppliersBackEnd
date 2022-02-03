@@ -13,6 +13,7 @@ router.post("/record/add", auth.verifyUser, function(req,res){
     const caddress = req.body.caddress;
     const materialQty = req.body.materialQty;
     const userid = req.userInfo._id;
+    //console.log("User id" + userid);
     const data = new record({
         userid : userid,
         username : username,
@@ -55,6 +56,28 @@ router.put('/record/update',auth.verifyUser, function(req,res){
 
 })
 
+//to view all records
+router.get('/records/all', function(req,res){
+    record.find()
+    .then(function(result){
+        res.json(result)
+    })
+    .catch(function(){
+        res.json({msg : "Something went wrong"})
+    })
+})
+
+//to view logged in user records
+router.get('/record/single', auth.verifyUser, function(req,res){
+    const userid = req.userInfo._id;
+    record.find({userid : userid})
+    .then(function(result){
+        res.json(result)
+    })
+    .catch(function(){
+        res.json({msg : "Something went wrong"})
+    })
+})
 
 
 module.exports = router;

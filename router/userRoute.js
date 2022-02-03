@@ -55,7 +55,7 @@ router.post("/user/login",function(req,res){
                 return res.json({message: "Invalid password!!!"})
             }
             //generate token --- jsonwebtoken
-            const token = jwt.sign({userId : userdata._id},"secretkey");
+            const token = jwt.sign({userId : userdata._id},"anysecretKey");
             res.json({token: token, message : "success"});
         })
 
@@ -98,6 +98,17 @@ router.put("/user/profile/update",auth.verifyUser,function(req,res){
 //         res.json({msg : "Someting went wrong!!"})
 //     })
 // })
+
+router.get('/profile/view', auth.verifyUser, function(req,res){
+    const userid = req.userInfo._id;
+    user.findOne({_id: userid})
+    .then(function(data){
+        res.json(data);
+    })
+    .catch(function(){
+        res.json({msg : "Someting went wrong!!"});
+    })
+})
 
 router.post("/product/upload", upload.single('myimage'), function(req,res){
     console.log(req.file);
