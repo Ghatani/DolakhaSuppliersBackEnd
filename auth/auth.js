@@ -5,10 +5,11 @@ const user = require('../models/userModel')
 module.exports.verifyUser = (req, res, next)=>{
    try{ 
     const token = req.headers.authorization.split(" ")[1];
-    const uData=jwt.verify(token, "SecretKey");
+    const uData=jwt.verify(token, "anysecretKey");
+    console.log(udata._id);
     user.findOne({_id : uData._id})
     .then((userData)=>{
-    //    console.log(userData);
+        console.log(userData);
       req.userInfo = userData;     
       next();
     })
