@@ -1,16 +1,17 @@
 const jwt = require('jsonwebtoken');
 
-const user = require('../models/userModel')
+const user = require('../models/userModel');
+
 
 module.exports.verifyUser = (req, res, next)=>{
    try{ 
     const token = req.headers.authorization.split(" ")[1];
     const uData=jwt.verify(token, "anysecretKey");
-    console.log(udata._id);
-    user.findOne({_id : uData._id})
+    
+    user.findOne({_id : uData.userId})
     .then((userData)=>{
-        console.log(userData);
-      req.userInfo = userData;     
+        //console.log(userData);
+      req.userInfo = userData;      
       next();
     })
     .catch((e)=>{
@@ -20,10 +21,6 @@ module.exports.verifyUser = (req, res, next)=>{
         res.json({error: e});
 
     }
-
-
-
-
 
  //   console.log(token);
 }
