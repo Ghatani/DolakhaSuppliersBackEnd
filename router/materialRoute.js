@@ -48,7 +48,7 @@ router.put('/material/update', auth.verifyUser, function(req,res){
 
 router.delete('/material/delete/:mid', auth.verifyUser, function(req,res){
     const mid = req.params.mid;
-    Product.deleteOne({_id : mid})
+    material.deleteOne({_id : mid})
     .then(function(){
         res.json({message : "Deleted"})
     })

@@ -110,7 +110,7 @@ router.get('/profile/view', auth.verifyUser, function(req,res){
     })
 })
 
-router.post("/product/upload", upload.single('myimage'), function(req,res){
+router.post("/user/image/upload", upload.single('myimage'), function(req,res){
     console.log(req.file);
     if(req.file == undefined){
     return res.json({msg: "invalid file or no file at all"});

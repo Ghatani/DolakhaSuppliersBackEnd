@@ -32,6 +32,18 @@ router.post("/record/add", auth.verifyUser, function(req,res){
 
 })
 
+router.delete('/record/delete/:rid', auth.verifyUser, function(req,res){
+    const rid=req.params.rid;
+    const userId =  req.userInfo._id;
+    record.deleteOne({_id : rid, userId : userId})
+    .then(function(){
+        res.json({message : "Deleted"})
+    })
+    .catch(function(){
+        res.json({message : "something went wrong!"})
+    })
+})
+
 router.put('/record/update',auth.verifyUser, function(req,res){
     const rid = req.body.rid;
     const username = req.body.username;
