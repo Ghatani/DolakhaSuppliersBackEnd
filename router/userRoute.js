@@ -15,7 +15,7 @@ router.post("/user/register",function(req,res)
     user.findOne({username : username})
     .then(function(userdata){
         if(userdata!=null){
-            res.json({message : "User already exist!!"});
+            res.json({message : "Username already exist!!"});
             return;
         }        
         //this is for user registration
