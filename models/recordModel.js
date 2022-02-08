@@ -1,5 +1,7 @@
+const timespan = require("jsonwebtoken/lib/timespan");
 const mongoose = require("mongoose");
 const customer = require("./customerModel");
+const user = require("./userModel");
 //require("./customerModel");
 
 const record = new mongoose.Schema({
@@ -8,7 +10,10 @@ const record = new mongoose.Schema({
         ref : 'User'
     },
     username : {type : String},
-    recordDate : {type : String},
+    recordDate : {
+        type : String,
+        default : Date.now,
+    },
     materialName : {type : String},       
     cname : {
         //type : mongoose.Schema.Types.ObjectId,
