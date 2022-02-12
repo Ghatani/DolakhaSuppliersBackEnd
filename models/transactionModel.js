@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const user = require("./userModel");
 const customer = require("./customerModel");
 
-const transaction = mongoose.model("Transactions",{
+const transaction = new mongoose.Schema({
     userid : {
         type : mongoose.Schema.Types.ObjectId,
         ref : 'User'

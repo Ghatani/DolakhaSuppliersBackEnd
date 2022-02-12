@@ -9,7 +9,9 @@ const mongoose = require("mongoose");
 const material = new mongoose.Schema({
     materialName : {type : String, required : true},
     materialPrice : {type : String},
-    materialQuantity : {type : Number},
+    materialQuantity : {
+        type : Number
+    },
     materialImage : {type : String}
 })
 
