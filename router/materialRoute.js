@@ -101,7 +101,7 @@ router.put('/material/image/upload/:mid', auth.verifyUser, upload.single('materi
 router.put('/material/update/quantity/:id', auth.verifyUser, function(req,res){
     //const mid = req.params.id;
     const materialName = req.body.materialName;
-    const materialQuantity = req.body.materialQuantity;
+    const materialQuantity = req.body.materialQty;
     material.updateOne({materialName : materialName},{materialQuantity : materialQuantity})
 })
 

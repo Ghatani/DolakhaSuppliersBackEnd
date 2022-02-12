@@ -87,17 +87,17 @@ router.delete("/user/profile/delete",auth.verifyUser,function(req,res){
     })
 })
 
-//delete user by admin
-router.delete("user/profile/admin/delete",auth.verifyAdmin,function(req,res){
-    const _id = req.body._id;
-    user.deleteOne({_id : _id})
-    .then(function(){
-        res.json({msg : "Profile deleted"})
-    })
-    .catch(function(){
-        res.json({msg : "Someting went wrong!!"})
-    })
-})
+// delete user by admin
+// router.delete("user/profile/admin/delete",auth.verifyAdmin,function(req,res){
+//     const _id = req.body._id;
+//     user.deleteOne({_id : _id})
+//     .then(function(){
+//         res.json({msg : "Profile deleted"})
+//     })
+//     .catch(function(){
+//         res.json({msg : "Someting went wrong!!"})
+//     })
+// })
 
 router.get('/profile/view', auth.verifyUser, function(req,res){
     const userid = req.userInfo._id;
