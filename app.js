@@ -3,12 +3,12 @@ const mongoose=require("mongoose");
 require("./database/database");
 const cors = require("cors");
 
-app.use(express.static(__dirname+'/view/images'));
-
 const app=express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
+
+app.use(express.static(__dirname+'/view/images'));
 
 const userRoute = require("./router/userRoute");
 app.use(userRoute);
