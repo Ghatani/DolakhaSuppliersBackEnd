@@ -10,7 +10,7 @@ const transaction = new mongoose.Schema({
     username : {type : String},
     transName : {type : String},
     transDate : {
-        type : String,
+        type : Date,
         default : Date.now,
     },
     transAmount : {type : String}
