@@ -8,7 +8,7 @@ const Router = require("express");
 //insert new transaction
 router.post('/transaction/insert', auth.verifyUser, function(req,res){
     const userid = req.userInfo._id;
-    const username = req.body.username;
+    const username = req.userInfo.username;
     const transName = req.body.transName;
     const transDate = req.body.transDate;
     const transAmount = req.body.transAmount;
@@ -29,8 +29,8 @@ router.post('/transaction/insert', auth.verifyUser, function(req,res){
 
 //update transaction
 router.put('/transaction/update', auth.verifyUser, function(req,res){
-    const tranId = req.body._id;
-    //const username = req.body.username;
+    const tranId = req.body.rid;
+    //const username = req.userInfo.username;
     const transName = req.body.transName;
     const transDate = req.body.transDate;
     const transAmount = req.body.transAmount;
@@ -86,8 +86,8 @@ router.get('/transaction/single', auth.verifyUser, function(req,res){
 
 //view one transaction
 router.get('/transaction/one/:id', auth.verifyUser, function(req,res){
-    const transId = req.params.id;
-     Product.findOne({_id : transId})
+    const tid = req.params.id;
+     Product.findOne({_id : tid})
      .then(function(result){
          res.json(result)
      })

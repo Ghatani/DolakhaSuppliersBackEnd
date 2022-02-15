@@ -69,7 +69,7 @@ router.put('/record/update',auth.verifyUser, function(req,res){
 })
 
 //to view all records
-router.get('/records/all', function(req,res){
+router.get('/records/all', auth.verifyUser, function(req,res){
     record.find()
     .then(function(result){
         res.json(result)
@@ -89,6 +89,17 @@ router.get('/record/single', auth.verifyUser, function(req,res){
     .catch(function(){
         res.json({msg : "Something went wrong"})
     })
+})
+
+router.get('/record/single/:rid', auth.verifyUser, function(req,res){
+    const rid= req.params.rid;
+    record.findOne({_id : rid})
+     .then(function(result){
+         res.json(result)
+     })
+     .catch(function(){
+         res.json({message : "something went wrong"})
+     })
 })
 
 
