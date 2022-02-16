@@ -1,6 +1,6 @@
 const timespan = require("jsonwebtoken/lib/timespan");
 const mongoose = require("mongoose");
-const customer = require("./customerModel");
+//const customer = require("./customerModel");
 const user = require("./userModel");
 //require("./customerModel");
 
