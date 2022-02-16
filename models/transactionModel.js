@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const user = require("./userModel");
-const customer = require("./customerModel");
 
 const transaction = new mongoose.Schema({
     userid : {
@@ -10,8 +9,8 @@ const transaction = new mongoose.Schema({
     username : {type : String},
     transName : {type : String},
     transDate : {
-        type : Date,
-        default : Date.now,
+        type : String,
+        //default : Date.now,
     },
     transAmount : {type : String}
 })

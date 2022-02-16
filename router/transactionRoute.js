@@ -22,6 +22,7 @@ router.post('/transaction/insert', auth.verifyUser, function(req,res){
     transactiondata.save()
     .then(function(){
         res.json({message : "Transaction Inserted!", success : true})
+        
     }).catch(function(){
         res.json({message : "Something went wrong!"})
     });
@@ -29,12 +30,12 @@ router.post('/transaction/insert', auth.verifyUser, function(req,res){
 
 //update transaction
 router.put('/transaction/update', auth.verifyUser, function(req,res){
-    const tranId = req.body.rid;
+    const tranId = req.body.tid;
     //const username = req.userInfo.username;
     const transName = req.body.transName;
     const transDate = req.body.transDate;
     const transAmount = req.body.transAmount;
-    transaction.updateOne({_id : tranId},{
+    transaction.updateOne({_id : tranId},{    
         transName : transName,
         transDate : transDate,
         transAmount : transAmount
@@ -48,8 +49,8 @@ router.put('/transaction/update', auth.verifyUser, function(req,res){
 })
 
 //delete selected transaction
-router.delete('/transaction/delete/:id', auth.verifyUser, function(req,res){
-    const transId = req.params.id;
+router.delete("/transaction/delete/:tid", auth.verifyUser, function(req,res){
+    const transId = req.params.tid;
     const userid = req.userInfo._id;
     transaction.deleteOne({_id : transId, userid : userid})
     .then(function(){
@@ -85,9 +86,9 @@ router.get('/transaction/single', auth.verifyUser, function(req,res){
 })
 
 //view one transaction
-router.get('/transaction/one/:id', auth.verifyUser, function(req,res){
-    const tid = req.params.id;
-     Product.findOne({_id : tid})
+router.get('/transaction/one/:tid', auth.verifyUser, function(req,res){
+    const tid = req.params.tid;
+     transaction.findOne({_id : tid})
      .then(function(result){
          res.json(result)
      })
