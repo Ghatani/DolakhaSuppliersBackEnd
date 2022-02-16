@@ -10,9 +10,9 @@ const material = new mongoose.Schema({
     materialName : {type : String, required : true},
     materialPrice : {type : String},
     materialQuantity : {
-        type : Number
+        type : String
     },
-    materialImage : {type : String}
+    //materialImage : {type : String}
 })
 
 module.exports = mongoose.model('Material',material);

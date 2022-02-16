@@ -13,7 +13,7 @@ router.post('/material/add', auth.verifyUser, function(req,res){
     material.findOne({materialName : materialName})
     .then(function(cdata){
         if (cdata!=null){            
-            res.send("Material already existed");
+            res.json({message : "Material already existed!"})
             return;
         }
         else
@@ -62,7 +62,7 @@ router.put('/material/update', auth.verifyUser, function(req,res){
 })
 
 //delete the material
-router.delete('/material/delete/:mid', auth.verifyUser, function(req,res){
+router.delete("/material/delete/:mid", auth.verifyUser, function(req,res){
     const mid = req.params.mid;
     material.deleteOne({_id : mid})
     .then(function(){
@@ -85,7 +85,7 @@ router.get('/material/view', function(req,res){
 })
 
 // view single material
-router.get('/material/single/:mid', auth.verifyUser, function(req,res){
+router.get("/material/single/:mid", auth.verifyUser, function(req,res){
     const mid = req.params.mid;
      material.findOne({_id : mid})
      .then(function(result){
@@ -97,7 +97,7 @@ router.get('/material/single/:mid', auth.verifyUser, function(req,res){
 })
 
 
-router.put('/material/image/upload/:mid', auth.verifyUser, upload.single('material_image'), function(req,res){
+router.put("/material/image/upload/:mid", auth.verifyUser, upload.single('material_image'), function(req,res){
     const mid = req.params.mid;
     const materialImage = req.file.filename;
     material.updateOne({_id : mid},{
@@ -112,7 +112,7 @@ router.put('/material/image/upload/:mid', auth.verifyUser, upload.single('materi
 })
 
 //adding the quantity of material when new record is added
-router.put('/material/update/quantity/:id', auth.verifyUser, function(req,res){
+router.put("/material/update/quantity/:id", auth.verifyUser, function(req,res){
     //const mid = req.params.id;
     const materialName = req.body.materialName;
     const materialQuantity = req.body.materialQty;
