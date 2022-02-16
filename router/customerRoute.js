@@ -3,9 +3,6 @@ const router = new express.Router();
 
 const auth = require("../auth/auth");
 const customer = require("../models/customerModel");
-const Router = require("express");
-const multer = require("multer");
-const upload = require("../uploads/file");
 
 //adding new customers
 router.post('/customer/add', auth.verifyUser, function(req,res){   
@@ -30,7 +27,7 @@ router.post('/customer/add', auth.verifyUser, function(req,res){
 })
 
 //editing existed customers
-router.put('/customer/update/:cid', auth.verifyUser, function(req,res){
+router.put('/customer/update/', auth.verifyUser, function(req,res){
     const cid = req.body.cid;
     const cname = req.body.cname;
     const caddress = req.body.caddress;
@@ -50,7 +47,7 @@ router.put('/customer/update/:cid', auth.verifyUser, function(req,res){
 })
 
 //delete customer details
-router.delete('/customer/delete/:cid', auth.verifyUser, function(req,res){
+router.delete("/customer/delete/:cid", auth.verifyUser, function(req,res){
     const cid = req.params.cid;
     customer.deleteOne({_id : cid})
     .then(function(){
@@ -71,5 +68,18 @@ router.get('/customer/view/all', auth.verifyUser, function(req,res){
         res.json({message : "Something went wrong"})
     })
 })
+
+// view single customer
+router.get("/customer/single/:cid", auth.verifyUser, function(req,res){
+    const cid = req.params.cid;
+    customer.findOne({_id : cid})
+    .then(function(result){
+        res.json(result)
+    })
+    .catch(function(){
+        res.json({message : "something went wrong"})
+    })
+})
+
 
 module.exports = router;
