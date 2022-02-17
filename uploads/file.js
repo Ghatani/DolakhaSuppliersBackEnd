@@ -11,7 +11,7 @@ cb(null,Date.now() + file.originalname);
 
 //filter profile images only accepting valid files - png, jpg, gif
 const filter = function(req,file,cb){
-if(file.mimetype == 'image/png' || file.mimetype == 'image/jpeg'){
+if(file.mimetype == 'image/png' || file.mimetype == 'image/jpg'){
 cb(null,true);
 
 }else{
