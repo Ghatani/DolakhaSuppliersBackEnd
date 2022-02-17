@@ -66,8 +66,9 @@ router.post("/user/login",function(req,res){
 router.put("/user/profile/update",auth.verifyUser,function(req,res){
     console.log(req.userInfo._id);
     const uid =req.userInfo._id;
+    const username = req.body.username;
     const phnno = req.body.phnno;
-    user.updateOne({_id : uid},{phnno : phnno})
+    user.updateOne({_id : uid},{username : username, phnno : phnno})
     .then(function()
     { res.json({msg : "Profile updated"})})
     .catch(function()
@@ -110,13 +111,22 @@ router.get('/profile/view', auth.verifyUser, function(req,res){
     })
 })
 
-router.post("/user/image/upload", upload.single('myimage'), function(req,res){
-    console.log(req.file);
-    if(req.file == undefined){
-    return res.json({msg: "invalid file or no file at all"});
-    }else{
-    return res.json({msg: "file uploaded successfully!"});    
-    }
-    });
+router.post("/user/image/upload/", auth.verifyUser, upload.single('myimage'), function(req,res){
+    //const userid = req.params.userid;
+    const userimage = req.file.filename;
+
+    //console.log(userid);
+    // user.updateOne({_id : userid},{
+    //     userimage : userimage
+    // })
+    // .then(function(){
+    //     res.json({msg : "Profile image inserted"})
+    // })
+    // .catch(function(){
+    //     res.json({msg : "Someting went wrong!!"})
+    // })
+
+})       
+        
 
 module.exports = router;
