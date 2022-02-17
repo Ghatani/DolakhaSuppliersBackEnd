@@ -12,7 +12,7 @@ const material = new mongoose.Schema({
     materialQuantity : {
         type : String
     },
-    //materialImage : {type : String}
+    materialImage : {type : String}
 })
 
 module.exports = mongoose.model('Material',material);

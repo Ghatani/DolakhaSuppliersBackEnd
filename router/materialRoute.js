@@ -8,7 +8,7 @@ const multer = require("multer");
 const upload = require("../uploads/file");
 
 //adding new materials details
-router.post('/material/add', auth.verifyUser, function(req,res){
+router.post('/material/add', auth.verifyUser, upload.single('materialImage'), function(req,res){
     const materialName = req.body.materialName;
     material.findOne({materialName : materialName})
     .then(function(cdata){
@@ -20,12 +20,12 @@ router.post('/material/add', auth.verifyUser, function(req,res){
         {   
             const materialPrice = req.body.materialPrice;
             const materialQuantity = req.body.materialQuantity;
-            // const materialImage = req.file.filename;
+            const materialImage = req.file.filename;
             const data = new material({
                 materialName : materialName,
                 materialPrice : materialPrice,
                 materialQuantity : materialQuantity,
-                // materialImage : materialImage
+                materialImage : materialImage
             });
             data.save()
             .then(function(){
