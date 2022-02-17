@@ -6,14 +6,14 @@ const record = require("../models/recordModel");
 
 //to insert record
 router.post("/record/add", auth.verifyUser, function(req,res){
-    const username = req.body.username;
     const recordDate = req.body.recordDate;
     const materialName = req.body.materialName;
     const cname = req.body.cname;
     const caddress = req.body.caddress;
     const materialQty = req.body.materialQty;
     const userid = req.userInfo._id;
-    //console.log("User id" + userid);
+    const username = req.userInfo.username;
+    
     const data = new record({
         userid : userid,
         username : username,
@@ -25,7 +25,7 @@ router.post("/record/add", auth.verifyUser, function(req,res){
     })
     data.save()
     .then(function()
-    { res.json({msg : "Succefully updated"})})
+    { res.json({msg : "Succefully inserted!!"})})
     .catch(function()
     { res.json({msg : "Someting went wrong, Please try agian!!"})}
     );
