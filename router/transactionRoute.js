@@ -12,7 +12,7 @@ router.post('/transaction/insert', auth.verifyUser, function(req,res){
     const transName = req.body.transName;
     const transDate = req.body.transDate;
     const transAmount = req.body.transAmount;
-    console.log("userid is" + userid);
+    console.log("userid is " + userid);
     const transactiondata = new transaction({
         userid : userid,
         username : username,
