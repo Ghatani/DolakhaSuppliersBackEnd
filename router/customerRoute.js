@@ -9,15 +9,15 @@ router.post('/customer/add', auth.verifyUser, function(req,res){
     const cphnno = req.body.cphnno;
     customer.findOne({cphnno : cphnno})
     .then(function(cdata){
-        if (cdata!=null){            
-            res.send("Customer phone number already existed");
+        if (cdata!=null){                       
+            res.json({msg : "Customer phone number already existed!!"})
             return;
         }
         else
         {   
             const cusdata = new customer(req.body);
             cusdata.save();
-            res.send("Succefully inserted!!");
+            res.json({msg : "Succefully inserted!!"})        
         }
     })
     .catch(function(e){
