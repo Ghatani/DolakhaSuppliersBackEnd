@@ -11,6 +11,7 @@ const upload = require("../uploads/file");
 
 router.post("/user/register",function(req,res)
 {
+    
     const username = req.body.username;
     user.findOne({username : username})
     .then(function(userdata){
@@ -56,7 +57,7 @@ router.post("/user/login",function(req,res){
             }
             //generate token --- jsonwebtoken
             const token = jwt.sign({userId : userdata._id},"anysecretKey");
-            res.json({token: token, message : "success"});
+            res.json({token: token, message : "Login success"});
         })
 
     })
